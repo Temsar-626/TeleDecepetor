@@ -1,0 +1,2 @@
+run = "cd TeleDecepetor && python app.py"
+language = "python3"

